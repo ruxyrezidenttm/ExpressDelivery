@@ -16,6 +16,8 @@
 		</div>
 
 		<div class="content">
+			<form action="paymentresult">
+	
 			<div class="registration" >
 					<div id="headline">Billing Address</div>
 					<input type="checkbox" name="c" value="pickup"> Use PickUp Address</input>
@@ -32,7 +34,7 @@
 					<input class="input" type="input" id="Expires" placeholder="Expires (05/2001)"> </input>
 					<input class="input" type="input" id="SecurityCode" placeholder="Security Code"> </input>
 			</div>
-			<div class="button" id="order">Pay 7$</div>
+			<input  class="submit" type="submit" value="Pay 7$" /></form>
 		</div>
 
 		<div class="footer">
@@ -51,5 +53,11 @@
 			</div>
 			
 		</div>
+		
+		<!--Test for javascript -->
+		<script type="text/javascript">
+		
+		console.log("Heeey");
+		</script>
 	</body>
 </html>

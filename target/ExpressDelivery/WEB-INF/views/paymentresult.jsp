@@ -44,8 +44,7 @@
 					</div>
 					<div id="thanks">
 						Thanks for using Express Delivery!
-						Go
-						<a href="index.html">Home</a>
+						<form action="index"><input  class="submit" type="submit" value="Home" /></form>
 					</div>
 				</div>
 			</div>

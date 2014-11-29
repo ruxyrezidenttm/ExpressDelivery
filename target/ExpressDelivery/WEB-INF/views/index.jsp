@@ -2,8 +2,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 
-<%@ page import="javax.servlet.*"%>
-
 <%-- <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> --%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -36,7 +34,7 @@
 				Take the advantage of our new online system and order couriers by
 				planning.
 				<div class="pic" id="online"></div>
-				<div class="button" id="start"><a href="order">Start</a></div>
+				<form action="order"><input  class="submit" type="submit" value="Start" /></form>
 			</div>
 			<div id="boxes">
 				Our 24/7 Customer Service is very happy to recieve your call to

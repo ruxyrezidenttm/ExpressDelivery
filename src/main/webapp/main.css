@@ -4,6 +4,10 @@
 	font-family: Lato, Arial;
 }
 
+a {
+	text-decoration: none;
+}
+
 /* <---- Header ----> */
 .toolbar{
 	display: inline-block;
@@ -292,12 +296,9 @@ p{
 	width: 100px;
 }
 
-.picWeight:hover{
-	border-color: #00ff72;
-}
 
-.picWeight:visited{
-	border-color: #00ff72;
+.picWeight:hover, .picWeight:visited, .picWeightSelected{
+	border-color: #00ff72 !important;
 }
 
 .picWeight[id=paper]{

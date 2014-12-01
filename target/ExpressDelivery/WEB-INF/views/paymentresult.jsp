@@ -20,18 +20,18 @@
 			<!-- Change Type to negative and the background Color will be changed -->
 				<div id="headline" type="positive">Summary</div>
 				<div class="column">
-					<div class="row">Size:</div>
-					<div class="row">TransportationType:</div>
+					<div class="row">Size: </div>
+					<div class="row">Transportation Type:</div>
 					<div class="row">Time:</div>
 					<div class="row">Pickup Address:</div>
 					<div class="row">Delivery Address:</div>
 				</div>
 				<div class="column">
-					<div class="row">Size</div>
-					<div class="row">Transportation</div>
-					<div class="row">Right Now</div>
-					<div class="row">Pickup Address</div>
-					<div class="row">Delivery Address</div>
+					<div class="row"><%= session.getAttribute("size") %> </div>
+					<div class="row"><%= session.getAttribute("transType") %></div>
+					<div class="row"><%= session.getAttribute("pickupTime") %></div>
+					<div class="row"><%= session.getAttribute("addressFrom") %></div>
+					<div class="row"><%= session.getAttribute("addressTo") %></div>
 				</div>
 			</div>
 
@@ -66,5 +66,9 @@
 			</div>
 			
 		</div>
+		
+		<% if(session.getAttribute("database") != null)
+				out.print("YEY");
+				%>
 	</body>
 </html>

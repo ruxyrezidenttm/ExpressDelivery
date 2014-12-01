@@ -3,6 +3,35 @@
 	<head>
 		<title> ExpressDelivery</title>
 		<meta charset="UTF-8">
+		
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+		
+		<script type="text/javascript">
+		/* var address = 'PICKUP ADDRESS HERE';
+		var name = 'PICKUP NAME HERE';
+		var phone = 'PICKUP PHONE HERE';
+		var email = 'PICKUP EMAIL HERE'; */
+		$( document ).ready(function() {
+			$('#usePickup').change(function() {
+				if($(this).is(":checked")) {
+					$('#billingInfo').fadeOut(function() {
+						/* $('#address').attr('value',address);
+						$('#fullName').attr('value',name);
+						$('#phoneNumber').attr('value',phone);
+						$('#email').attr('value',email); */
+					});
+				}
+				else {
+					console.log("yeey");
+					$('#address').attr('value','');
+					$('#fullName').attr('value','');
+					$('#phoneNumber').attr('value','');
+					$('#email').attr('value','');
+					$('#billingInfo').fadeIn();
+				}
+			});
+		});
+		</script>
 	</head>
 	<link rel="stylesheet" href="main.css">
 	<body class="body">
@@ -20,19 +49,21 @@
 	
 			<div class="registration" >
 					<div id="headline">Billing Address</div>
-					<input type="checkbox" name="c" value="pickup"> Use PickUp Address</input>
-					<input class="input" type="input" id="address" placeholder="Address"> </input>
-					<input class="input" type="input" id="fullName" placeholder="Full Name"> </input>
-					<input class="input" type="input" id="phoneNumber" placeholder="Phone #"> </input>
-					<input class="input" type="input" id="email" placeholder="Email"></input>
+					<input type="checkbox" id='usePickup' name="c" value="pickup" > Use PickUp Address</input>
+					
+					<div id='billingInfo' type="hidden">
+					<input class="input" type="text" id="address" name="addressBill" placeholder="Address" /> 
+					<input class="input" type="text" id="fullName" name="nameBiLL" placeholder="Full Name" /> 
+					<input class="input" type="text" id="phoneNumber" name="phoneBill" placeholder="Phone #"  /> 
+					<input class="input" type="email" id="email" name="emailBill" placeholder="Email" />
+					</div>
 			</div>
 			<div class="registration">
 					<div id="headline">Payment Method</div>
-					<input class="input" type="input" id="fullName" placeholder="Name on the Card"> </input>
-					<input class="input" type="input" id="CardNumber" placeholder="Card Number"> </input>
-
-					<input class="input" type="input" id="Expires" placeholder="Expires (05/2001)"> </input>
-					<input class="input" type="input" id="SecurityCode" placeholder="Security Code"> </input>
+					<input class="input" type="text" id="fullNamePay" name="nameCard" placeholder="Name on the Card" /> 
+					<input class="input" type="text" id="CardNumber" name="cardNumber" placeholder="Card Number" /> 
+					<input class="input" type="text" id="Expires" name="expiryDate" placeholder="Expires (05/2001)" />
+					<input class="input" type="text" id="SecurityCode" name="securityCode" placeholder="Security Code" />
 			</div>
 			<input  class="submit" type="submit" value="Pay 7$" /></form>
 		</div>
@@ -53,11 +84,5 @@
 			</div>
 			
 		</div>
-		
-		<!--Test for javascript -->
-		<script type="text/javascript">
-		
-		console.log("Heeey");
-		</script>
 	</body>
 </html>

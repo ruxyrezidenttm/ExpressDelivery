@@ -17,12 +17,15 @@
 		<div class="content">
 			<div class="header">
 				<div id="headline">Admin Login</div>
+				<form action="admin" method="POST" >
 				<div>
-					<input class="input" type="input" id="address" placeholder="Login"></input>
+					<input class="input" type="text" id="address" placeholder="Login"></input>
 					<input class="input" type="password" id="address" placeholder="Password"></input>
 				</div>
-				<div class="button">Login</div>
+				<input  class="submit" type="submit" value="Login" /></form>
+				</form>
 			</div>
+			
 		</div>
 
 

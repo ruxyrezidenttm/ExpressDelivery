@@ -12,97 +12,21 @@
 				<div class="link">Log Out</div>
 			</div>
 		</div>
-		<!-- this should be hidden when the user will login -->
-		<!--
+
+
 		<div class="content">
 			<div class="header">
 				<div id="headline">Admin Login</div>
+				<form action="admin" method="POST" >
 				<div>
-					<input class="input" type="input" id="address" placeholder="Login"></input>
+					<input class="input" type="text" id="address" placeholder="Login"></input>
 					<input class="input" type="password" id="address" placeholder="Password"></input>
 				</div>
-				<div class="button">Login</div>
+				<input  class="submit" type="submit" value="Login" /></form>
+				</form>
 			</div>
+			
 		</div>
-		-->
-		<!-- this should be shown when the user will login -->
-		<div class="order">
-			<div class="item" id="id"> #01</div>
-			<div class="item" id="fullName"> Davit Buniatyan</div>
-			<div class="item" id="date"> Right Now</div>
-			<div class="item" id="TransportationType"> Bicycle</div>
-			<div class="item" id="Size"> Big Box</div>
-			<div class="item" id="buttonCancell">Cancel</div>	
-			<div class="item" id="buttonDone">Done</div>
-
-			<div class="item" id="pickup">
-				<div class="headline">PickUp</div>
-				<div>28 New Oxford Str. London, UK WE5N 5HB +44 (0) 77 134 34312M</div>
-			</div>
-			<div class="item" id="delivery">
-				<div class="headline">Address </div>
-				<div>28 New Oxford Str.London, UKWE5N 5HB+44 (0) 77 134 34312M</div>
-			</div>
-		</div>
-
-
-		<div class="order">
-			<div class="item" id="id"> #01</div>
-			<div class="item" id="fullName"> Davit Buniatyan</div>
-			<div class="item" id="date"> Right Now</div>
-			<div class="item" id="TransportationType"> Bicycle</div>
-			<div class="item" id="Size"> Big Box</div>
-			<div class="item" id="buttonCancell">Cancel</div>	
-			<div class="item" id="buttonDone">Done</div>
-
-			<div class="item" id="pickup">
-				<div class="headline">PickUp</div>
-				<div>28 New Oxford Str. London, UK WE5N 5HB +44 (0) 77 134 34312M</div>
-			</div>
-			<div class="item" id="delivery">
-				<div class="headline">Address </div>
-				<div>28 New Oxford Str.London, UKWE5N 5HB+44 (0) 77 134 34312M</div>
-			</div>
-		</div>
-
-		<div class="order">
-			<div class="item" id="id"> #01</div>
-			<div class="item" id="fullName"> Davit Buniatyan</div>
-			<div class="item" id="date"> Right Now</div>
-			<div class="item" id="TransportationType"> Bicycle</div>
-			<div class="item" id="Size"> Big Box</div>
-			<div class="item" id="buttonCancell">Cancel</div>	
-			<div class="item" id="buttonDone">Done</div>
-
-			<div class="item" id="pickup">
-				<div class="headline">PickUp</div>
-				<div>28 New Oxford Str. London, UK WE5N 5HB +44 (0) 77 134 34312M</div>
-			</div>
-			<div class="item" id="delivery">
-				<div class="headline">Delivery </div>
-				<div>28 New Oxford Str.London, UKWE5N 5HB+44 (0) 77 134 34312M</div>
-			</div>
-		</div>
-
-		<div class="order">
-			<div class="item" id="id"> #01</div>
-			<div class="item" id="fullName"> Davit Buniatyan</div>
-			<div class="item" id="date"> Right Now</div>
-			<div class="item" id="TransportationType"> Bicycle</div>
-			<div class="item" id="Size"> Big Box</div>
-			<div class="item" id="buttonCancell">Cancel</div>	
-			<div class="item" id="buttonDone">Done</div>
-
-			<div class="item" id="pickup">
-				<div class="headline">PickUp</div>
-				<div>28 New Oxford Str. London, UK WE5N 5HB +44 (0) 77 134 34312M</div>
-			</div>
-			<div class="item" id="delivery">
-				<div class="headline">Address </div>
-				<div>28 New Oxford Str.London, UKWE5N 5HB+44 (0) 77 134 34312M</div>
-			</div>
-		</div>
-
 
 
 

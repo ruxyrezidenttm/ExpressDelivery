@@ -18,7 +18,7 @@ import javax.servlet.http.HttpSession;
  */
 
 @WebServlet(name = "BaseController", urlPatterns = { "/index", "/order",
-		"/payment", "/paymentresult", "/login" })
+		"/payment", "/paymentresult", "/login", "/admin" })
 
 public class BaseController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -131,6 +131,14 @@ public class BaseController extends HttpServlet {
 					.forward(request, response);
 
 			break;
+			
+		case "/admin":
+
+			getServletContext().getRequestDispatcher(
+					"/WEB-INF/views/admin/admin.jsp")
+					.forward(request, response);
+
+			break;
 
 		}
 
@@ -165,7 +173,11 @@ public class BaseController extends HttpServlet {
 			break;
 
 		case "/login":
-
+			doGet(request, response);
+			break;
+			
+		case "/admin":
+			doGet(request, response);
 			break;
 
 		}

@@ -44,6 +44,8 @@
 				}
 			});
 		});
+		
+		// TODO Need to write code to change the price dynamically on the button */
 		</script>
 	</head>
 	<link rel="stylesheet" href="main.css">

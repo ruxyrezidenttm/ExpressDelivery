@@ -3,8 +3,26 @@ package com.expressdelivery;
 public class Parcel {
 
 	private String size;
-	private String transportation;
+	private String transType;
 	private float price;
+	private String pickupTime;
+	private boolean pickupNow;
+
+	public String getPickupTime() {
+		return pickupTime;
+	}
+
+	public void setPickupTime(String pickupTime) {
+		this.pickupTime = pickupTime;
+	}
+
+	public boolean isPickupNow() {
+		return pickupNow;
+	}
+
+	public void setPickupNow(boolean pickupNow) {
+		this.pickupNow = pickupNow;
+	}
 
 	public String getSize() {
 		return size;
@@ -14,12 +32,12 @@ public class Parcel {
 		this.size = size;
 	}
 
-	public String getTransportation() {
-		return transportation;
+	public String getTransType() {
+		return transType;
 	}
 
-	public void setTransportation(String transportation) {
-		this.transportation = transportation;
+	public void setTransType(String transportation) {
+		this.transType = transportation;
 	}
 
 	public float getPrice() {

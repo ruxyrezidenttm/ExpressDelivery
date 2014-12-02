@@ -67,8 +67,8 @@
 			
 		</div>
 		
-		<% if(session.getAttribute("database") != null)
+		<%-- <% if(session.getAttribute("database") != null)
 				out.print("YEY");
-				%>
+				%> --%>
 	</body>
 </html>

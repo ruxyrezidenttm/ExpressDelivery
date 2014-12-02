@@ -19,8 +19,8 @@
 				<div id="headline">Admin Login</div>
 				<form action="admin" method="POST" >
 				<div>
-					<input class="input" type="text" id="address" placeholder="Login"></input>
-					<input class="input" type="password" id="address" placeholder="Password"></input>
+					<input class="input" type="text" id="username" name = "username" placeholder="Username"></input>
+					<input class="input" type="password" id="password" name = "password" placeholder="Password"></input>
 				</div>
 				<input  class="submit" type="submit" value="Login" /></form>
 				</form>

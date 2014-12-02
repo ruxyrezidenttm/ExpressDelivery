@@ -39,7 +39,7 @@ public class ConnectToDB {
 		}
 	}
 
-	public Connection getConnection() {
+	public Connection getDatabase() {
 
 		if (connection == null)
 			connect();

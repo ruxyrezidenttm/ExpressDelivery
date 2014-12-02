@@ -35,7 +35,7 @@ public class BaseController extends HttpServlet {
 		super.init();
 		
 		ConnectToDB connector = new ConnectToDB();
-		database = connector.getConnection();
+		database = connector.getDatabase();
 
 		
 	}
@@ -45,6 +45,7 @@ public class BaseController extends HttpServlet {
 
 		String userPath = request.getServletPath();
 		HttpSession session;
+		Delivery delivery;
 
 		switch (userPath) {
 
@@ -88,14 +89,35 @@ public class BaseController extends HttpServlet {
 
 			session = request.getSession(true);
 
+			
+			Address addressTo = new Address();
+			Address addressFrom = new Address();
+			Parcel parcel = new Parcel();
+			
+			parcel.setSize(request.getParameter("size"));
+			parcel.setTransType(request.getParameter("transType"));
+			
 			session.setAttribute("size", request.getParameter("size"));
 			session.setAttribute("transType", request.getParameter("transType"));
+			
+			if (request.getParameterValues("pickupTimeNow") != null)
+				session.setAttribute("pickupTime", "now");
+			else
+				session.setAttribute("pickupTime",
+					request.getParameter("pickupTime"));
+			
 
 			if (request.getParameterValues("pickupTimeNow") != null)
 				session.setAttribute("pickupTime", "now");
 			else
 				session.setAttribute("pickupTime",
 						request.getParameter("pickupTime"));
+			
+			addressFrom.setAddress(request.getParameter("addressFrom"));
+			addressFrom.setFullName(request.getParameter("nameFrom"));
+			addressFrom.setPhone(request.getParameter("phoneNumberFrom"));
+			addressFrom.setEmail(request.getParameter("emailFrom"));
+			
 
 			session.setAttribute("addressFrom",
 					request.getParameter("addressFrom"));
@@ -103,6 +125,11 @@ public class BaseController extends HttpServlet {
 			session.setAttribute("phoneNumberFrom",
 					request.getParameter("phoneNumberFrom"));
 			session.setAttribute("emailFrom", request.getParameter("emailFrom"));
+			
+			addressTo.setAddress(request.getParameter("addressTo"));
+			addressTo.setFullName(request.getParameter("nameTo"));
+			addressTo.setPhone(request.getParameter("phoneNumberTo"));
+			addressTo.setEmail(request.getParameter("emailTo"));
 
 			session.setAttribute("addressTo", request.getParameter("addressTo"));
 			session.setAttribute("nameTo", request.getParameter("nameTo"));
@@ -110,6 +137,13 @@ public class BaseController extends HttpServlet {
 					request.getParameter("phoneNumberTo"));
 			session.setAttribute("emailTo", request.getParameter("emailTo"));
 			session.setAttribute("database", database);
+			
+			delivery = new Delivery();
+			delivery.setAddressFrom(addressFrom);
+			delivery.setAddressTo(addressTo);
+			delivery.setParcel(parcel);
+			
+			session.setAttribute("delivery", delivery);
 
 			getServletContext().getRequestDispatcher(
 					"/WEB-INF/views/payment.jsp").forward(request, response);
@@ -121,6 +155,9 @@ public class BaseController extends HttpServlet {
 			getServletContext().getRequestDispatcher(
 					"/WEB-INF/views/paymentresult.jsp").forward(request,
 					response);
+			
+			session = request.getSession(true);
+			delivery = (Delivery) session.getAttribute("delivery");
 
 			break;
 
@@ -129,14 +166,33 @@ public class BaseController extends HttpServlet {
 			getServletContext().getRequestDispatcher(
 					"/WEB-INF/views/admin/login.jsp")
 					.forward(request, response);
-
+			
+			
+			
 			break;
 			
 		case "/admin":
+			
+		/*	ConnectToDB connector = new ConnectToDB();
+			Connection database = connector.getDatabase();*/
+			
+			AdminQueries queries = new AdminQueries(database);
+			
+			session = request.getSession(true);
+			String username = request.getParameter("username");
+			String password = request.getParameter("password");
+			
+			//TODO Check with session variable if logged in
+			//response.getWriter().println(username + " " + password);
+			
+			if(queries.checkLoginCred(username,password))
 
 			getServletContext().getRequestDispatcher(
 					"/WEB-INF/views/admin/admin.jsp")
 					.forward(request, response);
+			
+			else
+				getServletContext().getRequestDispatcher("/login").forward(request, response);
 
 			break;
 
@@ -167,7 +223,7 @@ public class BaseController extends HttpServlet {
 			break;
 
 		case "/paymentresult":
-
+			
 			doGet(request, response);
 
 			break;

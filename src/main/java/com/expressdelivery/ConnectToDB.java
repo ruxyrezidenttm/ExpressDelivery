@@ -41,8 +41,7 @@ public class ConnectToDB {
 
 	public Connection getDatabase() {
 
-		if (connection == null)
-			connect();
+		connect();
 		return connection;
 	}
 	

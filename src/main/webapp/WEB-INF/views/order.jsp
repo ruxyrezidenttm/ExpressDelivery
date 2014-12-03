@@ -80,7 +80,7 @@
 				<div class="orderBox" >
 					<div id="headline">Time</div>
 					<input type="checkbox" id='pickupTimeNow' name="pickupTimeNow" value="pickup"> Right Now</input>
-					<input class="input" type="date" id="pickupTime" name="pickupTime" placeholder="Today at (12:00)"> </input>
+					<input class="input" type="text" id="pickupTime" name="pickupTime" placeholder="Today at (12:00)"> </input>
 				</div>
 				<div class="orderBox" >
 					<div id="headline">Pick Up</div>

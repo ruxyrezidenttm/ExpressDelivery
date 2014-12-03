@@ -53,7 +53,7 @@
 					
 					<div id='billingInfo' type="hidden">
 					<input class="input" type="text" id="address" name="addressBill" placeholder="Address" /> 
-					<input class="input" type="text" id="fullName" name="nameBiLL" placeholder="Full Name" /> 
+					<input class="input" type="text" id="fullName" name="nameBill" placeholder="Full Name" /> 
 					<input class="input" type="text" id="phoneNumber" name="phoneBill" placeholder="Phone #"  /> 
 					<input class="input" type="email" id="email" name="emailBill" placeholder="Email" />
 					</div>

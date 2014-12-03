@@ -9,14 +9,16 @@ import java.sql.Connection;
 public class AdminQueries {
 	
 	private Connection connection;
+	private ConnectToDB connector;
 	
-	public AdminQueries(Connection connection) {
-		this.connection = connection;
+	public AdminQueries() {
+		connector = new ConnectToDB();
+		
 	}
 	
 	public boolean checkLoginCred(String username, String password) {
 		
-		
+		connection = connector.getDatabase();
 		String query = "SELECT password FROM admins WHERE username = '" + username + "'";
 		PreparedStatement pst;
 		ResultSet result = null;
@@ -45,16 +47,24 @@ public class AdminQueries {
 			e.printStackTrace();
 		}
 		
+		catch(NullPointerException e){
+			
+		}
+		
+		try {
+			connection.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		return check;
 		
 	}
 	
 	public static void main(String[] argv) {
 		
-		ConnectToDB connector = new ConnectToDB();
-		Connection database = connector.getDatabase();
-		
-		AdminQueries queries = new AdminQueries(database);
+		AdminQueries queries = new AdminQueries();
 		System.out.println(queries.checkLoginCred("lisa.kent", "passoForLisa"));
 	}
 

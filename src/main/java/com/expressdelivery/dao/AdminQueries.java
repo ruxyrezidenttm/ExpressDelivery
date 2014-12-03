@@ -1,10 +1,11 @@
-package com.expressdelivery;
+package com.expressdelivery.dao;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
 import java.sql.Connection;
+
+import com.expressdelivery.ConnectToDB;
 
 public class AdminQueries {
 	

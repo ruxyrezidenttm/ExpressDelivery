@@ -10,11 +10,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.expressdelivery.Address;
-import com.expressdelivery.CardDetails;
-import com.expressdelivery.Delivery;
-import com.expressdelivery.Parcel;
-import com.expressdelivery.UserQueries;
+import com.expressdelivery.dao.UserQueries;
+import com.expressdelivery.model.Address;
+import com.expressdelivery.model.CardDetails;
+import com.expressdelivery.model.Delivery;
+import com.expressdelivery.model.Parcel;
 
 /**
  * Servlet implementation class BaseController

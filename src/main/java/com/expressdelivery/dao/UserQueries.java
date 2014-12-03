@@ -1,8 +1,11 @@
-package com.expressdelivery;
+package com.expressdelivery.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+
+import com.expressdelivery.ConnectToDB;
+import com.expressdelivery.model.Delivery;
 
 public class UserQueries {
 	

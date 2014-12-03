@@ -1,4 +1,4 @@
-package com.expressdelivery;
+package com.expressdelivery.model;
 
 public class Parcel {
 

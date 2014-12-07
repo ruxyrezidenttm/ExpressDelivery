@@ -9,7 +9,7 @@
 		<div class="toolbar">
 			<div id="logo">ExpressDelivery</div>
 			<div class="menu">
-				<div class="link">Log Out</div>
+				<!-- <div class="link">Log Out</div> -->
 			</div>
 		</div>
 

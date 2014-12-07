@@ -3,6 +3,7 @@ package com.expressdelivery.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.annotation.processing.Processor;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,11 +11,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.expressdelivery.dao.UserQueries;
+import com.expressdelivery.database.DeliveryQueries;
 import com.expressdelivery.model.Address;
 import com.expressdelivery.model.CardDetails;
 import com.expressdelivery.model.Delivery;
 import com.expressdelivery.model.Parcel;
+import com.expressdelivery.model.businesslogic.ProcessFormData;
 
 /**
  * Servlet implementation class BaseController
@@ -36,7 +38,7 @@ public class BaseController extends HttpServlet {
 		String userPath = request.getServletPath();
 		HttpSession session;
 		Delivery delivery;
-
+		
 		switch (userPath) {
 
 		case "/index":
@@ -55,88 +57,43 @@ public class BaseController extends HttpServlet {
 			break;
 
 		case "/payment":
-
+			
 			session = request.getSession(true);
-
-			Address addressTo = new Address();
-			Address addressFrom = new Address();
-			Parcel parcel = new Parcel();
-
-			parcel.setSize(request.getParameter("size"));
-			parcel.setTransType(request.getParameter("transType"));
-
-			if (request.getParameterValues("pickupTimeNow") != null) {
-				parcel.setPickupNow(true);
-			} else {
-
-				parcel.setPickupTime(request.getParameter("pickupTime"));
-
-			}
-
-			addressFrom.setAddress(request.getParameter("addressFrom"));
-			addressFrom.setFullName(request.getParameter("nameFrom"));
-			addressFrom.setPhone(request.getParameter("phoneNumberFrom"));
-			addressFrom.setEmail(request.getParameter("emailFrom"));
-
-			addressTo.setAddress(request.getParameter("addressTo"));
-			addressTo.setFullName(request.getParameter("nameTo"));
-			addressTo.setPhone(request.getParameter("phoneNumberTo"));
-			addressTo.setEmail(request.getParameter("emailTo"));
-
-			delivery = new Delivery();
-			delivery.setAddressFrom(addressFrom);
-			delivery.setAddressTo(addressTo);
-			delivery.setParcel(parcel);
-
-			session.setAttribute("delivery", delivery);
-
+			
+			delivery = ProcessFormData.processOrderForm(request);
+			
+			session.setAttribute("delivery", delivery);	
+			
 			getServletContext().getRequestDispatcher(
 					"/WEB-INF/views/payment.jsp").forward(request, response);
 
 			break;
 
 		case "/paymentresult":
-
-			Address addressBill = new Address();
-
-			addressBill.setAddress(request.getParameter("addressBill"));
-			addressBill.setFullName(request.getParameter("nameBill"));
-			addressBill.setPhone(request.getParameter("phoneBill"));
-			addressBill.setEmail(request.getParameter("emailBill"));
-
-			CardDetails cardDetails = new CardDetails();
-			cardDetails.setAddressBilling(addressBill);
-			cardDetails.setCardNumber(request.getParameter("cardNumber"));
-			cardDetails.setDateExpiry(request.getParameter("expiryDate"));
-			cardDetails.setSecurityCode(request.getParameter("securityCode"));
-			cardDetails.setNameOnCard(request.getParameter("nameCard"));
-
+		
 			session = request.getSession(true);
-			
+
 			delivery = (Delivery) session.getAttribute("delivery");
+
+		    CardDetails cardDetails = ProcessFormData.processPaymentForm(request);
+			
+			delivery.setAddressBilling(cardDetails.getAddressBilling());
 			
 			session.setAttribute("size", delivery.getParcel().getSize());
 			session.setAttribute("transType", delivery.getParcel().getTransType());
 			session.setAttribute("pickupTime", delivery.getParcel().getPickupTime());
-			session.setAttribute("addressFrom", delivery.getAddressFrom().getAddress());
+			session.setAttribute("addressFrom", delivery.getAddressFrom()
+					.getAddress());
 			session.setAttribute("addressTo", delivery.getAddressTo().getAddress());
 			
-			delivery.setAddressBilling(addressBill);
-
-			UserQueries query = new UserQueries();
+			DeliveryQueries query = new DeliveryQueries();
 			query.addDelivery(delivery);
 
 			getServletContext().getRequestDispatcher(
 					"/WEB-INF/views/paymentresult.jsp").forward(request,
 					response);
 
-			/*
-			 * request.setAttribute("size", delivery.getParcel().getSize());
-			 * request.setAttribute(", o);
-			 */
-
 			
-
 			break;
 
 		}
@@ -175,7 +132,9 @@ public class BaseController extends HttpServlet {
 
 	}
 	
-	public void displayFormData(HttpServletResponse response, Delivery delivery, CardDetails cardDetails) throws ServletException, IOException {
+	/* Test function used to check if data is coming from the forms */
+	
+	private void displayFormData(HttpServletResponse response, Delivery delivery, CardDetails cardDetails) throws ServletException, IOException {
 		   
 		 PrintWriter out = response.getWriter();
 		 out.println(delivery.getAddressTo().getAddress());
@@ -208,6 +167,5 @@ public class BaseController extends HttpServlet {
 		 
 		
 	}
-
 
 }

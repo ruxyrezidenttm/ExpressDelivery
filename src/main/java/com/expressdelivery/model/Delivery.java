@@ -6,6 +6,8 @@ public class Delivery {
 	private Address addressTo;
 	private Address addressFrom;
 	private Address addressBilling;
+	private int databaseId;
+	
 	public Address getAddressBilling() {
 		return addressBilling;
 	}
@@ -39,5 +41,15 @@ public class Delivery {
 	public void setParcel(Parcel parcel) {
 		this.parcel = parcel;
 	}
+
+	public int getDatabaseId() {
+		return databaseId;
+	}
+
+	public void setDatabaseId(int databaseId) {
+		this.databaseId = databaseId;
+	}
+	
+	
 
 }

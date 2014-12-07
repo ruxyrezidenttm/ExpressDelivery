@@ -2,7 +2,7 @@
  * 		  http://jdbc.postgresql.org/documentation/93/query.html
  */
 
-package com.expressdelivery;
+package com.expressdelivery.database;
 
 import java.sql.DriverManager;
 import java.sql.Connection;

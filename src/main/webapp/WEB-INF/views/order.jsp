@@ -59,7 +59,7 @@
 			</div>
 		</div>
 		<div class="content">
-			<form action="payment" method="GET">
+			<form action="payment" method="POST">
 			<div class="registration">
 				<div class="orderBox">
 					<div id="weight">

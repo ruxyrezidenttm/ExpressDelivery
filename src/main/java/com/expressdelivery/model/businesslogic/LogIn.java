@@ -1,0 +1,36 @@
+package com.expressdelivery.model.businesslogic;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import com.expressdelivery.database.AdminQueries;
+import com.expressdelivery.model.Admin;
+
+public class LogIn {
+
+	public static boolean checkLogIn(HttpServletRequest request) {
+
+		HttpSession session = request.getSession(true);
+
+		if (session.getAttribute("loggedIn") == null) {
+
+			String username = request.getParameter("username");
+			String password = request.getParameter("password");
+
+			AdminQueries queries = new AdminQueries();
+			Admin admin = queries.getAdmin(username);
+
+			if (admin.getPassword().equals(password)) {
+				session.setAttribute("loggedIn", true);
+				return true;
+			} else {
+				session.setAttribute("loggedIn", null);
+				return false;
+			}
+		}
+
+		return true;
+
+	}
+
+}

@@ -350,7 +350,7 @@ input[type=checkbox] {
 /*---------------- Admin ------------------*/
 .order {
 	display: table;
-	width: 1200px;
+	width: 1230px;
 	height: 30px;
 	margin-left: 20px;
 	margin-right: 20px;
@@ -406,38 +406,6 @@ input[type=checkbox] {
 	height: 0px;
 }
 
-#buttonCancell {
-	font-size: 16px;
-	font-weight: 200;
-	background: #FF7575;
-	color: white;
-	padding: auto;
-	height: 24px;
-	padding: 5px;
-	margin-right: auto;
-	width: 75px;
-}
-
-#buttonCancell:hover {
-	background-color: #CD0000;
-}
-
-#buttonDone {
-	font-size: 16px;
-	font-weight: 200;
-	background: #00ff72;
-	color: white;
-	padding: auto;
-	height: 24px;
-	padding: 5px;
-	margin-right: 0px;
-	width: 75px;
-}
-
-#buttonDone:hover {
-	background-color: #00dc62;
-}
-
 /* same formating as .button but different attributes because it'a <input> type of button */
 .submit {
 	background: #00ff72;
@@ -447,10 +415,44 @@ input[type=checkbox] {
 	border: none;
 	padding: 5px 20px;
 }
+.submit {
+	background: #00ff72;
+	
+}
 
 .submit:hover {
 	border: none;
 	background: #00dc62;
+}
+
+#buttonCancel {
+	font-size: 16px;
+	font-weight: 200;
+	background: #FF7575;
+	color: white;
+	padding: auto;
+	padding: 5px;
+	margin-right: auto;
+	width: 75px;
+}
+
+#buttonCancel:hover {
+	background-color: #CD0000;
+}
+
+#buttonDone {
+	font-size: 16px;
+	font-weight: 200;
+	background: #00ff72;
+	color: white;
+	padding: auto;
+	padding: 5px;
+	margin-right: 0px;
+	width: 75px;
+}
+
+#buttonDone:hover {
+	background-color: #00dc62;
 }
 
 input[type=radio] {

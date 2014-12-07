@@ -1,13 +1,14 @@
-package com.expressdelivery.dao;
+package com.expressdelivery.database;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Connection;
 
-import com.expressdelivery.ConnectToDB;
+import com.expressdelivery.model.Admin;
+import com.expressdelivery.model.dao.AdminDao;
 
-public class AdminQueries {
+public class AdminQueries implements AdminDao{
 	
 	private Connection connection;
 	private ConnectToDB connector;
@@ -17,7 +18,7 @@ public class AdminQueries {
 		
 	}
 	
-	public boolean checkLoginCred(String username, String password) {
+	public Admin getAdmin(String username) {
 		
 		connection = connector.getDatabase();
 		String query = "SELECT password FROM admins WHERE username = '" + username + "'";
@@ -33,14 +34,16 @@ public class AdminQueries {
 			e.printStackTrace();
 
 		}
-		boolean check = false;
+		
+		String password = null;
+		String email = null;
 		
 		try {
 
 			if(result.next()) {
 
-				//System.out.println(result.getString(1));
-				check = result.getString(1).equals(password);
+				password = result.getString("password");
+				//email = result.getString("email");
 				
 			}
 
@@ -59,14 +62,21 @@ public class AdminQueries {
 			e.printStackTrace();
 		}
 		
-		return check;
+		Admin admin = new Admin();
+		
+		admin.setUsername(username);
+		admin.setPassword(password);
+		admin.setEmail(email);
+		
+		return admin;
+		
 		
 	}
 	
 	public static void main(String[] argv) {
 		
 		AdminQueries queries = new AdminQueries();
-		System.out.println(queries.checkLoginCred("lisa.kent", "passoForLisa"));
+		System.out.println(queries.getAdmin("lisa.kent").getPassword().equals("passForLisa"));
 	}
 
 }

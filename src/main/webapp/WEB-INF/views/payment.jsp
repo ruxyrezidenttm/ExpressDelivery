@@ -45,7 +45,7 @@
 		</div>
 
 		<div class="content">
-			<form action="paymentresult">
+			<form action="paymentresult" method="POST">
 	
 			<div class="registration" >
 					<div id="headline">Billing Address</div>
@@ -65,7 +65,7 @@
 					<input class="input" type="text" id="Expires" name="expiryDate" placeholder="Expires (05/2001)" />
 					<input class="input" type="text" id="SecurityCode" name="securityCode" placeholder="Security Code" />
 			</div>
-			<input  class="submit" type="submit" value="Pay 7$" /></form>
+			<div id="order"><input  class="submit" type="submit" value="Pay 7$" /></div></form>
 		</div>
 
 		<div class="footer">

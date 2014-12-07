@@ -1,4 +1,8 @@
 <!DOCTYPE html>
+
+<%@page import="java.util.ArrayList" %>
+<%@page import="com.expressdelivery.model.Delivery" %>
+
 <html>
 <head>
 <title>ExpressDelivery</title>
@@ -13,33 +17,45 @@
 		</div>
 	</div>
 	
-	<% for(int i = 1; i < 10; i++) { %>
+	<% 
+	
+	ArrayList<Delivery> deliveries = new ArrayList<Delivery>();
+	deliveries = (ArrayList<Delivery>) session.getAttribute("deliveries");
+	
+	for(int i = 1; i < deliveries.size(); i++) { %>
 	
 	<div class="order">
-		<div class="item" id="id">#0<%=i %></div>
-		<div class="item" id="fullName">Davit Buniatyan</div>
-		<div class="item" id="date">Right Now</div>
-		<div class="item" id="TransportationType">Bicycle</div>
-		<div class="item" id="Size">Big Box</div>
+		<form>
+		<div class="item" id="id">#<%=i %></div>
+		<div class="item" id="fullName"><%= deliveries.get(i).getAddressFrom().getFullName() %></div>
+		<div class="item" id="date"><%= deliveries.get(i).getParcel().getPickupTime()%></div>
+		<div class="item" id="TransportationType"><%= deliveries.get(i).getParcel().getTransType() %></div>
+		<div class="item" id="Size"><%= deliveries.get(i).getParcel().getSize() %></div>
+		
 		<div class="item">
-			<select id="selectlist">
-				<option value="All Journals" selected="selected">Select 1</option>
-				<option value="All Journals" selected="selected">Select 2</option>
+			<select name="selectStatus<%=i %>">
+				<option value="booked" selected="selected">Booked</option>
+				<option value="confirmed" >Confirmed</option>
+				<option value="collected" >Collected</option>
+				<option value="onitsway" >On its way</option>
+				<option value="delivered" >Delivered</option>
 			</select>
 		</div>
-
-		<div class="item" id="buttonCancell">Cancel</div>
-		<div class="item" id="buttonDone">Done</div>
-
+	
+		<!-- <div class="item" id="buttonCancell">Cancel</div>
+		<div class="item" id="buttonDone">Done</div> -->		
+		<div class="item"><input  class="submit" id="buttonCancel" type="button" value="Cancel" />
+		<input  class="submit" id="buttonDone" type="submit" value="Done" /></div>
 		<div class="item" id="pickup">
 			<div class="headline">PickUp</div>
-			<div>28 New Oxford Str. London, UK WE5N 5HB +44 (0) 77 134
-				34312M</div>
+			<div><%= deliveries.get(i).getAddressFrom().getAddress() %></div>
 		</div>
 		<div class="item" id="delivery">
 			<div class="headline">Address</div>
-			<div>28 New Oxford Str.London, UKWE5N 5HB+44 (0) 77 134 34312M</div>
+			<div><%= deliveries.get(i).getAddressTo().getAddress() %></div>
 		</div>
+		
+		</form>
 	</div>
 	
 	<% } %>

@@ -1,12 +1,20 @@
-package com.expressdelivery.model;
+package com.expressdelivery.model.bean;
 
-public class Parcel {
+import java.io.Serializable;
 
+public class Parcel implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+	
 	private String size;
 	private String transType;
 	private float price;
 	private String pickupTime;
 	private boolean pickupNow;
+	
+	public Parcel() {
+		
+	}
 
 	public String getPickupTime() {
 		return pickupTime;
@@ -36,8 +44,8 @@ public class Parcel {
 		return transType;
 	}
 
-	public void setTransType(String transportation) {
-		this.transType = transportation;
+	public void setTransType(String transType) {
+		this.transType = transType;
 	}
 
 	public float getPrice() {

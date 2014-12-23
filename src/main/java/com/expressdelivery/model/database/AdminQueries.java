@@ -1,16 +1,16 @@
-package com.expressdelivery.database;
+package com.expressdelivery.model.database;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Connection;
 
-import com.expressdelivery.model.Admin;
+import com.expressdelivery.model.bean.Admin;
 import com.expressdelivery.model.dao.AdminDao;
 
 public class AdminQueries implements AdminDao{
 	
-	private Connection connection;
+	
 	private ConnectToDB connector;
 	
 	public AdminQueries() {
@@ -20,7 +20,7 @@ public class AdminQueries implements AdminDao{
 	
 	public Admin getAdmin(String username) {
 		
-		connection = connector.getDatabase();
+		Connection connection = connector.getDatabase();
 		String query = "SELECT password FROM admins WHERE username = '" + username + "'";
 		PreparedStatement pst;
 		ResultSet result = null;

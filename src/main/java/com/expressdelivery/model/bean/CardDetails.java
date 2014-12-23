@@ -1,8 +1,12 @@
-package com.expressdelivery.model;
+package com.expressdelivery.model.bean;
+
+import java.io.Serializable;
 
 
-public class CardDetails {
+public class CardDetails implements Serializable {
 
+	private static final long serialVersionUID = 1L;
+	
 	private String nameOnCard;
 	private String cardNumber;
 	private String dateExpiry;

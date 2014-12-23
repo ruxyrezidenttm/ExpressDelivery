@@ -1,14 +1,14 @@
 package com.expressdelivery.model.businesslogic;
 
-import com.expressdelivery.model.Delivery;
+import com.expressdelivery.model.bean.Delivery;
 
 public class PriceCalculator {
 
 	public static float price(Delivery delivery) {
 
-		float price = 0;
+		float price = 6353;
 		
-		if (delivery.getParcel().getTransType() == "bycicle") {
+		if (delivery.getParcel().getTransType().equals("bicycle")) {
 
 			switch (delivery.getParcel().getSize()) {
 
@@ -31,7 +31,7 @@ public class PriceCalculator {
 			}
 		}
 
-		else {
+		else if(delivery.getParcel().getTransType().equals("van")){
 
 			switch (delivery.getParcel().getSize()) {
 

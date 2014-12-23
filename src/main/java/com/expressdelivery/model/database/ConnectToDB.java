@@ -2,7 +2,7 @@
  * 		  http://jdbc.postgresql.org/documentation/93/query.html
  */
 
-package com.expressdelivery.database;
+package com.expressdelivery.model.database;
 
 import java.sql.DriverManager;
 import java.sql.Connection;
@@ -12,6 +12,10 @@ import java.sql.SQLException;
 
 public class ConnectToDB {
 
+	/* This database expires after 31st of December. 
+	 * Setup a localhost database and import the mysqlDatabase.sql file from the root folder
+	 * of the project instead. */
+	
 	private static Connection connection;
 	private final String host = "eu-cdbr-azure-west-b.cloudapp.net";
 	private final String database = "ruxyrezAUp9fMtIc";
@@ -28,6 +32,12 @@ public class ConnectToDB {
 		}
 
 		connection = null;
+		
+		
+		/* if it is a local database, then the connection string looks like this
+		 *    connection = DriverManager.
+		 *    getConnection("jdbc:mysql://localhost:3306/"+ database, user, password);
+		 */
 
 		try {
 			connection = DriverManager.getConnection("jdbc:mysql://" + host

@@ -2,10 +2,10 @@ package com.expressdelivery.model.businesslogic;
 
 import javax.servlet.http.HttpServletRequest;
 
-import com.expressdelivery.model.Address;
-import com.expressdelivery.model.CardDetails;
-import com.expressdelivery.model.Delivery;
-import com.expressdelivery.model.Parcel;
+import com.expressdelivery.model.bean.Address;
+import com.expressdelivery.model.bean.CardDetails;
+import com.expressdelivery.model.bean.Delivery;
+import com.expressdelivery.model.bean.Parcel;
 
 public class ProcessFormData {
 

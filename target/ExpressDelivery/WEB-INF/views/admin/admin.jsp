@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
 <%@page import="java.util.ArrayList" %>
-<%@page import="com.expressdelivery.model.Delivery" %>
+<%@page import="com.expressdelivery.model.bean.Delivery" %>
 
 <html>
 <head>
@@ -17,6 +17,8 @@
 		</div>
 	</div>
 	
+	<p><h1 class="title" style="margin-left: 20px">Admin Panel</h1></p>
+	
 	<% 
 	
 	ArrayList<Delivery> deliveries = new ArrayList<Delivery>();
@@ -25,7 +27,7 @@
 	for(int i = 1; i < deliveries.size(); i++) { %>
 	
 	<div class="order">
-		<form>
+		<form action="admin" method="POST">
 		<div class="item" id="id">#<%=i %></div>
 		<div class="item" id="fullName"><%= deliveries.get(i).getAddressFrom().getFullName() %></div>
 		<div class="item" id="date"><%= deliveries.get(i).getParcel().getPickupTime()%></div>
@@ -54,7 +56,7 @@
 			<div class="headline">Address</div>
 			<div><%= deliveries.get(i).getAddressTo().getAddress() %></div>
 		</div>
-		
+		<input type="hidden" name="orderInList" value="<%=i %>" />
 		</form>
 	</div>
 	

@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<%@page import="com.expressdelivery.model.bean.Delivery" %>
 <html>
 	<head>
 		<title> ExpressDelivery</title>
@@ -22,7 +23,6 @@
 					});
 				}
 				else {
-					console.log("yeey");
 					$('#address').attr('value','');
 					$('#fullName').attr('value','');
 					$('#phoneNumber').attr('value','');
@@ -43,7 +43,11 @@
 				<div class="link">Contact</div>
 			</div>
 		</div>
-
+		<%
+			Delivery delivery;
+			delivery = (Delivery) session.getAttribute("delivery");
+		
+		%>
 		<div class="content">
 			<form action="paymentresult" method="POST">
 	
@@ -65,7 +69,7 @@
 					<input class="input" type="text" id="Expires" name="expiryDate" placeholder="Expires (05/2001)" />
 					<input class="input" type="text" id="SecurityCode" name="securityCode" placeholder="Security Code" />
 			</div>
-			<div id="order"><input  class="submit" type="submit" value="Pay 7$" /></div></form>
+			<div id="order"><input  class="submit" type="submit" value="Pay <%= delivery.getParcel().getPrice() %>$" /></div></form>
 		</div>
 
 		<div class="footer">

@@ -1,7 +1,11 @@
-package com.expressdelivery.model;
+package com.expressdelivery.model.bean;
 
-public class Address {
+import java.io.Serializable;
 
+public class Address implements Serializable{
+
+	private static final long serialVersionUID = 1L;
+	
 	private String address;
 	private String fullName;
 	private String phone;
@@ -9,10 +13,6 @@ public class Address {
 
 	public Address() {
 
-		address = null;
-		fullName = null;
-		phone = null;
-		email = null;
 	}
 
 	public String getAddress() {

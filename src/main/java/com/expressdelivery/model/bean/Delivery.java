@@ -1,12 +1,21 @@
-package com.expressdelivery.model;
+package com.expressdelivery.model.bean;
+
+import java.io.Serializable;
 
 
-public class Delivery {
+public class Delivery implements Serializable {
 
+	private static final long serialVersionUID = 1L;
+	
 	private Address addressTo;
 	private Address addressFrom;
 	private Address addressBilling;
 	private int databaseId;
+	private Parcel parcel;
+	
+	public Delivery() {
+		
+	}
 	
 	public Address getAddressBilling() {
 		return addressBilling;
@@ -15,8 +24,7 @@ public class Delivery {
 	public void setAddressBilling(Address addressBilling) {
 		this.addressBilling = addressBilling;
 	}
-
-	private Parcel parcel;
+	
 
 	public Address getAddressTo() {
 		return addressTo;

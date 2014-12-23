@@ -1,4 +1,4 @@
-package com.expressdelivery.database;
+package com.expressdelivery.model.database;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -6,19 +6,19 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import com.expressdelivery.model.Address;
-import com.expressdelivery.model.Delivery;
-import com.expressdelivery.model.Parcel;
+import com.expressdelivery.model.bean.Address;
+import com.expressdelivery.model.bean.Delivery;
+import com.expressdelivery.model.bean.Parcel;
 import com.expressdelivery.model.dao.DeliveryDao;
 
 public class DeliveryQueries implements DeliveryDao{
 
-	private Connection connection;
+	private ConnectToDB connector;
 
 	public DeliveryQueries() {
 
-		ConnectToDB connector = new ConnectToDB();
-		connection = connector.getDatabase();
+		connector = new ConnectToDB();
+		
 
 	}
 
@@ -26,6 +26,8 @@ public class DeliveryQueries implements DeliveryDao{
 
 		int isPickupNow = delivery.getParcel().isPickupNow() ? 1 : 0;
 
+		Connection connection = connector.getDatabase();
+		
 		String query = "INSERT INTO deliveries "
 				+ "(addressFrom, nameFrom, phoneFrom, emailFrom, addressTo, nameTo,"
 				+ "phoneTo, emailTo, size, transType, pickupNow, pickupTime, price, "
@@ -64,7 +66,7 @@ public class DeliveryQueries implements DeliveryDao{
 				+ "'"
 				+ delivery.getParcel().getPickupTime()
 				+ "',"
-				+ 20
+				+ delivery.getParcel().getPrice()
 				+ "," + 1 + ")";
 		PreparedStatement pst;
 		int result;
@@ -91,6 +93,8 @@ public class DeliveryQueries implements DeliveryDao{
 	public ArrayList<Delivery> getAllDeliveries() {
 
 		ArrayList<Delivery> deliveries = new ArrayList<Delivery>();
+		
+		Connection connection = connector.getDatabase();
 		
 		String query = "SELECT * FROM deliveries";
 				
@@ -135,7 +139,6 @@ public class DeliveryQueries implements DeliveryDao{
 				deliveries.add(delivery);
 				
 				
-				//System.out.println(result.getString("addressTo") + " " + result.getString("addressTo"));
 				
 	        }
 
@@ -158,6 +161,8 @@ public class DeliveryQueries implements DeliveryDao{
 	public void deleteDelivery(int id) {
 		
 		ArrayList<Delivery> deliveries = new ArrayList<Delivery>();
+		
+		Connection connection = connector.getDatabase();
 		
 		String query = "DELETE FROM deliveries WHERE id = " + id;
 				
@@ -185,15 +190,5 @@ public class DeliveryQueries implements DeliveryDao{
 		
 	}
 	
-public static void main(String[] argv) {
-		
-		DeliveryQueries queries = new DeliveryQueries();
-		
-		System.out.println(queries.getAllDeliveries().size());
-		queries = new DeliveryQueries();
-		queries.deleteDelivery(1);
-		queries = new DeliveryQueries();
-		System.out.println(queries.getAllDeliveries().size());
-	}
 
 }

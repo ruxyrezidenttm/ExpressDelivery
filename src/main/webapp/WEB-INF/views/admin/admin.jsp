@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
 <%@page import="java.util.ArrayList" %>
-<%@page import="com.expressdelivery.model.Delivery" %>
+<%@page import="com.expressdelivery.model.bean.Delivery" %>
 
 <html>
 <head>
@@ -16,6 +16,8 @@
 			<div class="link">Log Out</div>
 		</div>
 	</div>
+	
+	<p><h1 class="title" style="margin-left: 20px">Admin Panel</h1></p>
 	
 	<% 
 	

@@ -2,7 +2,7 @@ package com.expressdelivery.model.dao;
 
 import java.util.ArrayList;
 
-import com.expressdelivery.model.Delivery;
+import com.expressdelivery.model.bean.Delivery;
 
 public interface DeliveryDao {
 	

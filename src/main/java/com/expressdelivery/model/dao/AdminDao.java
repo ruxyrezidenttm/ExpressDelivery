@@ -1,6 +1,6 @@
 package com.expressdelivery.model.dao;
 
-import com.expressdelivery.model.Admin;
+import com.expressdelivery.model.bean.Admin;
 
 public interface AdminDao {
 	

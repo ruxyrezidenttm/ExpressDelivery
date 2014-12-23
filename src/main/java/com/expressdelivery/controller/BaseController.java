@@ -3,7 +3,6 @@ package com.expressdelivery.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import javax.annotation.processing.Processor;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,12 +10,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.expressdelivery.database.DeliveryQueries;
-import com.expressdelivery.model.Address;
-import com.expressdelivery.model.CardDetails;
-import com.expressdelivery.model.Delivery;
-import com.expressdelivery.model.Parcel;
+import com.expressdelivery.model.bean.CardDetails;
+import com.expressdelivery.model.bean.Delivery;
+import com.expressdelivery.model.businesslogic.CardPayment;
+import com.expressdelivery.model.businesslogic.CardPaymentInterface;
+import com.expressdelivery.model.businesslogic.PriceCalculator;
 import com.expressdelivery.model.businesslogic.ProcessFormData;
+import com.expressdelivery.model.dao.DeliveryDao;
+import com.expressdelivery.model.database.DeliveryQueries;
 
 /**
  * Servlet implementation class BaseController
@@ -62,6 +63,8 @@ public class BaseController extends HttpServlet {
 			
 			delivery = ProcessFormData.processOrderForm(request);
 			
+			delivery.getParcel().setPrice(PriceCalculator.price(delivery));			
+			
 			session.setAttribute("delivery", delivery);	
 			
 			getServletContext().getRequestDispatcher(
@@ -76,8 +79,19 @@ public class BaseController extends HttpServlet {
 			delivery = (Delivery) session.getAttribute("delivery");
 
 		    CardDetails cardDetails = ProcessFormData.processPaymentForm(request);
+		    
+		    CardPaymentInterface pay = new CardPayment();
+		    
+		    pay.payWithCard(cardDetails);
 			
 			delivery.setAddressBilling(cardDetails.getAddressBilling());
+			
+			DeliveryDao query = new DeliveryQueries();
+			query.addDelivery(delivery);
+			displayFormData(response, delivery, cardDetails);
+			
+			BackgroundServicesController.getSendEmail().sendEmail(delivery);
+			BackgroundServicesController.getTracking().addTrack(delivery);
 			
 			session.setAttribute("size", delivery.getParcel().getSize());
 			session.setAttribute("transType", delivery.getParcel().getTransType());
@@ -86,8 +100,7 @@ public class BaseController extends HttpServlet {
 					.getAddress());
 			session.setAttribute("addressTo", delivery.getAddressTo().getAddress());
 			
-			DeliveryQueries query = new DeliveryQueries();
-			query.addDelivery(delivery);
+			
 
 			getServletContext().getRequestDispatcher(
 					"/WEB-INF/views/paymentresult.jsp").forward(request,
@@ -132,8 +145,19 @@ public class BaseController extends HttpServlet {
 
 	}
 	
+	
+	
 	/* Test function used to check if data is coming from the forms */
 	
+	@Override
+	public void init() throws ServletException {
+		// TODO Auto-generated method stub
+		super.init();
+		
+		BackgroundServicesController.startSendEmail();
+		BackgroundServicesController.startTracking();
+	}
+
 	private void displayFormData(HttpServletResponse response, Delivery delivery, CardDetails cardDetails) throws ServletException, IOException {
 		   
 		 PrintWriter out = response.getWriter();

@@ -10,11 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.expressdelivery.database.AdminQueries;
-import com.expressdelivery.database.DeliveryQueries;
-import com.expressdelivery.model.Admin;
-import com.expressdelivery.model.Delivery;
+import com.expressdelivery.model.bean.Delivery;
 import com.expressdelivery.model.businesslogic.LogIn;
+import com.expressdelivery.model.dao.DeliveryDao;
+import com.expressdelivery.model.database.DeliveryQueries;
 
 /**
  * Servlet implementation class AdminController
@@ -56,7 +55,7 @@ public class AdminController extends HttpServlet {
 			if (loggedIn)
 
 			{
-				DeliveryQueries query = new DeliveryQueries();
+				DeliveryDao query = new DeliveryQueries();
 
 				ArrayList<Delivery> deliveries;
 
@@ -107,8 +106,10 @@ public class AdminController extends HttpServlet {
 						.getAttribute("deliveries");
 
 				int databaseId = deliveries.get(id).getDatabaseId();
+				
+				BackgroundServicesController.getTracking().updateTrack(databaseId);
 
-				DeliveryQueries query = new DeliveryQueries();
+				DeliveryDao query = new DeliveryQueries();
 				query.deleteDelivery(databaseId);
 
 			}
